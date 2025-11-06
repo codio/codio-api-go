@@ -1,0 +1,3041 @@
+openapi: 3.1.0
+info:
+  description: Documentation APIs v1.0
+  title: Codio API
+  version: "1.0"
+servers:
+- description: Codio API URL
+  url: https://octopus.codio.com/
+paths:
+  /api/v1/events:
+    get:
+      operationId: eventList
+      parameters:
+      - allowEmptyValue: true
+        description: Continuation request token
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        description: Count of returned events
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 200
+          minimum: 10
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventsList"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+      security:
+      - bearerAuth: []
+      summary: List Webhook Events
+      tags:
+      - Events API
+  /api/v1/books/{bookId}/versions:
+    post:
+      operationId: bookVersionPublish
+      parameters:
+      - description: Book id
+        explode: false
+        in: path
+        name: bookId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/PublishData"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or book or stack not found
+        "412":
+          description: Incorrect arguments
+        "415":
+          description: "Incorrect file format, .zip and .tar.gz supported"
+      security:
+      - bearerAuth: []
+      summary: Publish new book version
+      tags:
+      - Course books API
+  /api/v1/books/{bookId}/publishes/{taskId}:
+    get:
+      operationId: bookVersionPublishesStatus
+      parameters:
+      - description: Book id
+        explode: false
+        in: path
+        name: bookId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Book or task not found
+      security:
+      - bearerAuth: []
+      summary: Get book publish status
+      tags:
+      - Course books API
+  /api/v1/stacks/{stackId}:
+    get:
+      operationId: stackInfo
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StackInfo"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack not found
+      security:
+      - bearerAuth: []
+      summary: Get stack information
+      tags:
+      - Stack API
+  /api/v1/stacks/{stackId}/tasks/{taskId}:
+    get:
+      operationId: stackVersionsPublishStatus
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StackPublishInfo"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack or task not found
+      security:
+      - bearerAuth: []
+      summary: Get stack version publish information
+      tags:
+      - Stack API
+  /api/v1/stacks/{stackId}/versions:
+    post:
+      operationId: stackVersionsPublish
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/ProvisionVersionInfoFormData"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ProvisionVersionInfoEncoded"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack or task not found
+      security:
+      - bearerAuth: []
+      summary: Publish new stack version
+      tags:
+      - Stack API
+  /api/v1/assessment_library:
+    get:
+      operationId: listLibraries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/SocratesLibrary"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+      security:
+      - bearerAuth: []
+      summary: List assessment libraries
+      tags:
+      - Assessment libraries API
+  /api/v1/assessment_library/{libraryId}/assessment:
+    get:
+      operationId: assessmentLibrarySearch
+      parameters:
+      - description: Library id
+        explode: false
+        in: path
+        name: libraryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Optional count parameter
+        explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional offset parameter
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Free form tag search is allowed
+        explode: true
+        in: query
+        name: free
+        required: false
+        schema:
+          $ref: "#/components/schemas/SocrateTagSearchExample"
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SocrateAnswerExample"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Library not found
+      security:
+      - bearerAuth: []
+      summary: Search assessments
+      tags:
+      - Assessment libraries API
+    post:
+      operationId: assessmentLibraryCreateAssessment
+      parameters:
+      - description: Library id
+        explode: false
+        in: path
+        name: libraryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              bundle:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/SocratesCreateExample"
+          application/json:
+            schema:
+              example:
+                assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+                libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+                details:
+                  name: Free Text Autograde
+                  showName: true
+                  showExpectedAnswerOption:
+                    never: {}
+                metadata:
+                  files:
+                  - grade.sh
+                  tags:
+                    Assessment Type: Free Text Autograde
+                    Bloom's level: Level I - Remembering
+                    Content: FTA
+                    Programming Language: FTA
+                    Learning Objectives: FTA
+                  layout: 2-panels
+                  content: |
+                    # Sample content New Page
+
+                    <<<<<library-assessment>>>>>
+                  pageTitle: Library 3
+                  buttonText: Check It!
+                body:
+                  freeTextAuto:
+                    command: bash grade.sh
+                    showGuidanceAfterResponseOption:
+                      never: {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                  assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+                  libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+                  details:
+                    name: Free Text Autograde
+                    showName: true
+                    showExpectedAnswerOption:
+                      never: {}
+                  metadata:
+                    files:
+                    - grade.sh
+                    tags:
+                      Assessment Type: Free Text Autograde
+                      Bloom's level: Level I - Remembering
+                      Content: FTA
+                      Programming Language: FTA
+                      Learning Objectives: FTA
+                    layout: 2-panels
+                    content: |
+                      # Sample content New Page
+
+                      <<<<<library-assessment>>>>>
+                    pageTitle: Library 3
+                    buttonText: Check It!
+                  body:
+                    freeTextAuto:
+                      command: bash grade.sh
+                      showGuidanceAfterResponseOption:
+                        never: {}
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Library not found
+      security:
+      - bearerAuth: []
+      summary: Create assessment
+      tags:
+      - Assessment libraries API
+  /api/v1/assessment_library/{libraryId}/assessment/{id}:
+    get:
+      operationId: assessmentLibraryGetAssessment
+      parameters:
+      - description: Library id
+        explode: false
+        in: path
+        name: libraryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assessment id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                  assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+                  libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+                  details:
+                    name: Free Text Autograde
+                    showName: true
+                    showExpectedAnswerOption:
+                      never: {}
+                  metadata:
+                    files:
+                    - grade.sh
+                    tags:
+                      Assessment Type: Free Text Autograde
+                      Bloom's level: Level I - Remembering
+                      Content: FTA
+                      Programming Language: FTA
+                      Learning Objectives: FTA
+                    layout: 2-panels
+                    content: |
+                      # Sample content New Page
+
+                      <<<<<library-assessment>>>>>
+                    pageTitle: Library 3
+                    buttonText: Check It!
+                  body:
+                    freeTextAuto:
+                      command: bash grade.sh
+                      showGuidanceAfterResponseOption:
+                        never: {}
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Library or assessment not found
+      security:
+      - bearerAuth: []
+      summary: Get assessment
+      tags:
+      - Assessment libraries API
+    put:
+      operationId: assessmentLibraryUpdateAssessment
+      parameters:
+      - description: Library id
+        explode: false
+        in: path
+        name: libraryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assessment id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              bundle:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/SocratesCreateExample"
+          application/json:
+            schema:
+              example:
+                assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+                libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+                details:
+                  name: Free Text Autograde
+                  showName: true
+                  showExpectedAnswerOption:
+                    never: {}
+                metadata:
+                  files:
+                  - grade.sh
+                  tags:
+                    Assessment Type: Free Text Autograde
+                    Bloom's level: Level I - Remembering
+                    Content: FTA
+                    Programming Language: FTA
+                    Learning Objectives: FTA
+                  layout: 2-panels
+                  content: |
+                    # Sample content New Page
+
+                    <<<<<library-assessment>>>>>
+                  pageTitle: Library 3
+                  buttonText: Check It!
+                body:
+                  freeTextAuto:
+                    command: bash grade.sh
+                    showGuidanceAfterResponseOption:
+                      never: {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                  assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+                  libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+                  details:
+                    name: Free Text Autograde
+                    showName: true
+                    showExpectedAnswerOption:
+                      never: {}
+                  metadata:
+                    files:
+                    - grade.sh
+                    tags:
+                      Assessment Type: Free Text Autograde
+                      Bloom's level: Level I - Remembering
+                      Content: FTA
+                      Programming Language: FTA
+                      Learning Objectives: FTA
+                    layout: 2-panels
+                    content: |
+                      # Sample content New Page
+
+                      <<<<<library-assessment>>>>>
+                    pageTitle: Library 3
+                    buttonText: Check It!
+                  body:
+                    freeTextAuto:
+                      command: bash grade.sh
+                      showGuidanceAfterResponseOption:
+                        never: {}
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Library or assessment not found
+      security:
+      - bearerAuth: []
+      summary: Update assessment
+      tags:
+      - Assessment libraries API
+  /api/v1/courses/{courseId}/students/{studentId}/export/csv:
+    get:
+      operationId: exportStudentCSV
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Student id
+        explode: false
+        in: path
+        name: studentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                description: Url to download
+                example: https://archives.codio.com/temporary/assignment_student.csv
+                type: string
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or student not found
+      security:
+      - bearerAuth: []
+      summary: Export Student CSV
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/export/csv:
+    get:
+      operationId: exportAssignmentCSV
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                description: Url to download
+                example: https://archives.codio.com/temporary/course_assignment.csv
+                type: string
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or student not found
+      security:
+      - bearerAuth: []
+      summary: Export Assignment CSV
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/assessments/csv:
+    get:
+      operationId: exportAssessmentData
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Export Assessment Data CSV
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/assessments/csv/download/{taskId}:
+    get:
+      operationId: fetchDownloadStatus
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Assessment Data CSV Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/students/{studentId}/download:
+    get:
+      operationId: startedAssignmentDownload
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Student id
+        explode: false
+        in: path
+        name: studentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Assessment Data CSV Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/students/{studentId}/download/{taskId}:
+    get:
+      operationId: fetchDownloadStatusStudent
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Student id
+        explode: false
+        in: path
+        name: studentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Student Data CSV Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/workdata:
+    get:
+      operationId: exportCourseWorkDataItems
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/DownloadStatus"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: List Exports Course Work Data
+      tags:
+      - Course exports API
+    post:
+      operationId: exportCourseWorkData
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Export Course Work Data
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/workdata/progress/{taskId}:
+    get:
+      operationId: exportCourseWorkDataItemByTask
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Work Data Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/sources:
+    get:
+      operationId: exportCourseSourceDataItems
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/DownloadStatus"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: List Exports Course Sources Data
+      tags:
+      - Course exports API
+    post:
+      operationId: exportCourseSourcesData
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Export Course Sources
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/sources/progress/{taskId}:
+    get:
+      operationId: exportCourseSourceDataItemByTask
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Sources Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/coach:
+    post:
+      operationId: exportCoachData
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Export Coach Data
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/coach/progress/{taskId}:
+    get:
+      operationId: exportCoachDataByTask
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export Coach Data Status
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/llmproxy:
+    post:
+      operationId: exportLLMProxyData
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Export LLMProxy Data
+      tags:
+      - Course exports API
+  /api/v1/courses/{courseId}/export/llmproxy/progress/{taskId}:
+    get:
+      operationId: exportLLMProxyDataByTaskRoute
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Export task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or task not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Export LLMProxy Data Status
+      tags:
+      - Course exports API
+  /api/v1/courses_list:
+    get:
+      operationId: coursesList
+      parameters:
+      - allowEmptyValue: true
+        description: "Next search data portion token, if specified - other parameters\
+          \ will be ignored"
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        description: Archived courses filter
+        explode: true
+        in: query
+        name: archived
+        required: false
+        schema:
+          enum:
+          - "true"
+          - "false"
+          - ""
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCourses"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Incorrect or expired next search token
+      security:
+      - bearerAuth: []
+      summary: List Organization Courses
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/archive:
+    post:
+      operationId: archiveCourse
+      parameters:
+      - description: Course id to archive
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArchiveCourse"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Archive Course
+      tags:
+      - Course API
+  /api/v1/courses:
+    get:
+      operationId: findCourse
+      parameters:
+      - description: Course name
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        description: Fetch hidden assignments
+        explode: true
+        in: query
+        name: withHiddenAssignments
+        required: false
+        schema:
+          enum:
+          - "true"
+          - "false"
+          - ""
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Find Course
+      tags:
+      - Course API
+    post:
+      operationId: createCourse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCourse"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateCourseAnswer"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "412":
+          description: Incorrect course configuration
+      security:
+      - bearerAuth: []
+      summary: Create Course
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/modules:
+    post:
+      operationId: createCourseModule
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCourseModule"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateCourseModuleAnswer"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Create Course Module
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/teachers:
+    get:
+      operationId: listCourseTeachers
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/User"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: List Course Teachers
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/students:
+    get:
+      operationId: listCourseStudents
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/User"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: List Course Students
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}:
+    get:
+      operationId: courseStructure
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - allowEmptyValue: true
+        description: Fetch hidden assignments
+        explode: true
+        in: query
+        name: withHiddenAssignments
+        required: false
+        schema:
+          enum:
+          - "true"
+          - "false"
+          - ""
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Course Structure
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/update_books:
+    post:
+      operationId: updateBooks
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/updateBooks_request"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/updateBooks_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Update Course Books
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/students/{studentId}/progress:
+    get:
+      operationId: studentCourseProgress
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Student id
+        explode: false
+        in: path
+        name: studentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/AssignmentProgressItem"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or student not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Course Structure
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/filterLearnersForMentors:
+    post:
+      operationId: filterLearnersForMentors
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+              - mentorId: mentor1@email
+                learnerIds:
+                - learner1@email
+                - learner2@email
+              - mentorId: mentor2@email
+                learnerIds:
+                - learner3@email
+                - learner4@email
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FilterLearnersForMentorsAnswerExample"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+        "412":
+          description: Incorrect course configuration
+      security:
+      - bearerAuth: []
+      summary: Filter Learners For Mentors
+      tags:
+      - Course API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/versions:
+    post:
+      operationId: assignmentVersionPublish
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/PublishData"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment or stack not found
+        "412":
+          description: Incorrect arguments
+        "415":
+          description: "Incorrect file format, .zip and .tar.gz supported"
+      security:
+      - bearerAuth: []
+      summary: Publish new assignment version
+      tags:
+      - Course assignments API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/publishes/{taskId}:
+    get:
+      operationId: assignmentVersionPublishesStatus
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStatus"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment or task not found
+      security:
+      - bearerAuth: []
+      summary: Get assignment publish status
+      tags:
+      - Course assignments API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/students/{studentId}:
+    post:
+      operationId: updateStudentTimeExtensions
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Student id
+        explode: false
+        in: path
+        name: studentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentTimeExtension"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: {}
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment or student not found
+      security:
+      - bearerAuth: []
+      summary: Update Student Time Extensions
+      tags:
+      - Course assignments API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/settings:
+    get:
+      operationId: fetchAssignmentSettings
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssignmentSettingsResult"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment not found
+      security:
+      - bearerAuth: []
+      summary: Fetch Assignment Settings
+      tags:
+      - Course assignments API
+    post:
+      operationId: updateAssignmentSettings
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignmentSettings"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssignmentSettingsResult"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment not found
+      security:
+      - bearerAuth: []
+      summary: Update Assignment Settings
+      tags:
+      - Course assignments API
+  /api/v1/courses/{courseId}/assignments/{assignmentId}/students:
+    get:
+      operationId: assignmentStudentsInfo
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Assignment id
+        explode: false
+        in: path
+        name: assignmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/StudentInformation"
+                type: array
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course or assignment not found
+      security:
+      - bearerAuth: []
+      summary: Get assignment students info
+      tags:
+      - Course assignments API
+  /api/v1/courses/{courseId}/assignments:
+    post:
+      operationId: createProjectBasedAssignment
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAssignment"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateAssignmentAnswer"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Course not found
+      security:
+      - bearerAuth: []
+      summary: Create Project Based Assignment
+      tags:
+      - Course assignments API
+components:
+  schemas:
+    Event:
+      description: Event data
+      example:
+      - event:
+          event: ASSIGNMENT_COMPLETE
+          data:
+            student_id: 00112233-4455-6677-8888-999999999999
+            student_email: email@example.com
+            student_name: Student A Test
+            course_status:
+              completed: 1
+              in_progress: 1
+              not_started: 1
+            course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
+            course_name: Course Name
+            assignment_id: 73472b0688330b25012d4c01f110bbbd
+            assignment_name: Assignment Name
+            assignment_status: COMPLETED
+            assignment_grade: 58
+            assignment_completion_date: 2024-09-13T09:06:39.019Z
+            module_id: 7104b5fc44330095d783b8bb68853a1b
+            module_name: Module Name
+        completed: false
+        error: "Webhook answered with code: 500"
+        issuedAt: 2024-08-29T09:32:55Z
+      - event:
+          event: ASSIGNMENT_GRADING_FAILED
+          data:
+            courseName: Course Name
+            assignmentName: Assignment Name
+            error: Error stack trace
+            studentName: Student A Test
+        completed: true
+        error: ""
+        issuedAt: 2024-08-29T09:52:55Z
+      properties:
+        event:
+          additionalProperties:
+            description: Event data
+            example:
+              event: ASSIGNMENT_COMPLETE
+              data:
+                student_id: 00112233-4455-6677-8888-999999999999
+                student_email: email@example.com
+                student_name: Student A Test
+                course_status:
+                  completed: 1
+                  in_progress: 1
+                  not_started: 1
+                course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
+                course_name: Course Name
+                assignment_id: 73472b0688330b25012d4c01f110bbbd
+                assignment_name: Assignment Name
+                assignment_status: COMPLETED
+                assignment_grade: 58
+                assignment_completion_date: 2024-09-13T09:06:39.019Z
+                module_id: 7104b5fc44330095d783b8bb68853a1b
+                module_name: Module Name
+          description: Event data
+          example:
+            event: ASSIGNMENT_COMPLETE
+            data:
+              student_id: 00112233-4455-6677-8888-999999999999
+              student_email: email@example.com
+              student_name: Student A Test
+              course_status:
+                completed: 1
+                in_progress: 1
+                not_started: 1
+              course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
+              course_name: Course Name
+              assignment_id: 73472b0688330b25012d4c01f110bbbd
+              assignment_name: Assignment Name
+              assignment_status: COMPLETED
+              assignment_grade: 58
+              assignment_completion_date: 2024-09-13T09:06:39.019Z
+              module_id: 7104b5fc44330095d783b8bb68853a1b
+              module_name: Module Name
+        completed:
+          description: Event was successfully send to target url
+          example: false
+          type: boolean
+        error:
+          description: Optional error description
+          example: "Webhook answered with code: 500"
+          type: string
+        issuedAt:
+          description: ISO Date String
+          example: 2024-08-29T09:32:55Z
+          type: string
+    EventsList:
+      example:
+        nextToken: nextToken
+        events:
+        - event:
+            event: ASSIGNMENT_COMPLETE
+            data:
+              student_id: 00112233-4455-6677-8888-999999999999
+              student_email: email@example.com
+              student_name: Student A Test
+              course_status:
+                completed: 1
+                in_progress: 1
+                not_started: 1
+              course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
+              course_name: Course Name
+              assignment_id: 73472b0688330b25012d4c01f110bbbd
+              assignment_name: Assignment Name
+              assignment_status: COMPLETED
+              assignment_grade: 58
+              assignment_completion_date: 2024-09-13T09:06:39.019Z
+              module_id: 7104b5fc44330095d783b8bb68853a1b
+              module_name: Module Name
+          completed: false
+          error: "Webhook answered with code: 500"
+          issuedAt: 2024-08-29T09:32:55Z
+        - event:
+            event: ASSIGNMENT_GRADING_FAILED
+            data:
+              courseName: Course Name
+              assignmentName: Assignment Name
+              error: Error stack trace
+              studentName: Student A Test
+          completed: true
+          error: ""
+          issuedAt: 2024-08-29T09:52:55Z
+      properties:
+        events:
+          description: Event data
+          example:
+          - event:
+              event: ASSIGNMENT_COMPLETE
+              data:
+                student_id: 00112233-4455-6677-8888-999999999999
+                student_email: email@example.com
+                student_name: Student A Test
+                course_status:
+                  completed: 1
+                  in_progress: 1
+                  not_started: 1
+                course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
+                course_name: Course Name
+                assignment_id: 73472b0688330b25012d4c01f110bbbd
+                assignment_name: Assignment Name
+                assignment_status: COMPLETED
+                assignment_grade: 58
+                assignment_completion_date: 2024-09-13T09:06:39.019Z
+                module_id: 7104b5fc44330095d783b8bb68853a1b
+                module_name: Module Name
+            completed: false
+            error: "Webhook answered with code: 500"
+            issuedAt: 2024-08-29T09:32:55Z
+          - event:
+              event: ASSIGNMENT_GRADING_FAILED
+              data:
+                courseName: Course Name
+                assignmentName: Assignment Name
+                error: Error stack trace
+                studentName: Student A Test
+            completed: true
+            error: ""
+            issuedAt: 2024-08-29T09:52:55Z
+          items:
+            $ref: "#/components/schemas/Event"
+          type: array
+        nextToken:
+          description: Continuation request token
+          type: string
+    PublishData:
+      properties:
+        file:
+          description: File archive data to be published
+          format: binary
+          type: string
+        changelog:
+          description: Publish changelog
+          example: Updated to new requirements.
+          type: string
+        stackVersionId:
+          description: Stack version identification
+          type: string
+        withStackUpdate:
+          description: Propagate stack update
+          example: false
+          type: boolean
+    TaskProgress:
+      example:
+        taskUri: https://octopus.codio.com/api/v1/download/109c46bb3f59ee6c6ff2748dbeb2c8f8
+        taskId: 109c46bb3f59ee6c6ff2748dbeb2c8f8
+      properties:
+        taskId:
+          description: Task identification
+          example: 109c46bb3f59ee6c6ff2748dbeb2c8f8
+          type: string
+        taskUri:
+          description: Url to fetch progress
+          example: https://octopus.codio.com/api/v1/download/109c46bb3f59ee6c6ff2748dbeb2c8f8
+          type: string
+    TaskStatus:
+      example:
+        error: error
+        done: true
+        taskId: taskId
+      properties:
+        taskId:
+          description: Task identification
+          type: string
+        done:
+          description: Task completion status
+          type: boolean
+        error:
+          description: Optional task error description
+          type: string
+    StackInfo:
+      example:
+        owner: owner
+        short_description: short_description
+        versions:
+        - date: 2024-08-29T09:32:55Z
+          changelog: changelog
+          id: id
+        - date: 2024-08-29T09:32:55Z
+          changelog: changelog
+          id: id
+        installations: 100
+        name: name
+        id: id
+        long_description: long_description
+        owner_type: owner_type
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        long_description:
+          type: string
+        short_description:
+          type: string
+        owner:
+          type: string
+        owner_type:
+          type: string
+        versions:
+          items:
+            $ref: "#/components/schemas/StackVersionInfo"
+          type: array
+        installations:
+          example: 100
+          format: int64
+          type: integer
+    StackVersionInfo:
+      example:
+        date: 2024-08-29T09:32:55Z
+        changelog: changelog
+        id: id
+      properties:
+        id:
+          type: string
+        changelog:
+          type: string
+        date:
+          description: ISO Date String
+          example: 2024-08-29T09:32:55Z
+          type: string
+    StackPublishInfo:
+      example:
+        provision_log: provision_log
+        error: error
+        status: status
+      properties:
+        status:
+          type: string
+        error:
+          type: string
+        provision_log:
+          type: string
+    ProvisionVersionInfoFormData:
+      properties:
+        id:
+          type: string
+        provisioner:
+          description: Provisioner type
+          enum:
+          - BASH
+          - ANSIBLE
+          type: string
+        content:
+          description: Optional provision instructions. Content or bundle should be
+            specified
+          type: string
+        message:
+          type: string
+        file:
+          description: Optional bundle for provisioner. Content or bundle should be
+            specified
+          format: binary
+          type: string
+      required:
+      - id
+    ProvisionVersionInfoEncoded:
+      properties:
+        id:
+          type: string
+        provisioner:
+          description: Provisioner type
+          enum:
+          - BASH
+          - ANSIBLE
+          type: string
+        content:
+          description: Provision instructions
+          type: string
+        message:
+          type: string
+      required:
+      - content
+      - id
+    SocratesLibrary:
+      example:
+        createdBy: createdBy
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdBy:
+          type: string
+    SocrateTagSearchExample:
+      properties:
+        Assessment Type:
+          example: Free Text Autograde
+          type: string
+        Bloom's level:
+          example: Level I - Remembering
+          type: string
+        Content:
+          example: Introduction To Java
+          type: string
+        Programming Language:
+          example: Java
+          type: string
+        Learning Objectives:
+          example: Student is able to do
+          type: string
+    SocrateAnswerExample:
+      example:
+        assessments:
+        - assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+          libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+          details:
+            name: Free Text Autograde
+            showName: true
+            showExpectedAnswerOption:
+              never: {}
+          metadata:
+            files:
+            - grade.sh
+            tags:
+              Assessment Type: Free Text Autograde
+              Bloom's level: Level I - Remembering
+              Content: FTA
+              Programming Language: FTA
+              Learning Objectives: FTA
+            layout: 2-panels
+            content: |
+              # Sample content New Page
+
+              <<<<<library-assessment>>>>>
+            pageTitle: Library 3
+            buttonText: Check It!
+          body:
+            freeTextAuto:
+              command: bash grade.sh
+              showGuidanceAfterResponseOption:
+                never: {}
+      properties:
+        assessments:
+          example:
+          - assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+            libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+            details:
+              name: Free Text Autograde
+              showName: true
+              showExpectedAnswerOption:
+                never: {}
+            metadata:
+              files:
+              - grade.sh
+              tags:
+                Assessment Type: Free Text Autograde
+                Bloom's level: Level I - Remembering
+                Content: FTA
+                Programming Language: FTA
+                Learning Objectives: FTA
+              layout: 2-panels
+              content: |
+                # Sample content New Page
+
+                <<<<<library-assessment>>>>>
+              pageTitle: Library 3
+              buttonText: Check It!
+            body:
+              freeTextAuto:
+                command: bash grade.sh
+                showGuidanceAfterResponseOption:
+                  never: {}
+          items:
+            additionalProperties: {}
+          type: array
+    SocratesCreateExample:
+      properties:
+        bundle:
+          description: Optional file archive data to be published
+          format: binary
+          type: string
+        assessment:
+          additionalProperties: {}
+          example:
+            assessmentId: 6d52dadd-4828-4b04-9b20-e629772ae9a2
+            libraryId: c0eb2847-2f83-4c9f-9a91-dc389fbcac90
+            details:
+              name: Free Text Autograde
+              showName: true
+              showExpectedAnswerOption:
+                never: {}
+            metadata:
+              files:
+              - grade.sh
+              tags:
+                Assessment Type: Free Text Autograde
+                Bloom's level: Level I - Remembering
+                Content: FTA
+                Programming Language: FTA
+                Learning Objectives: FTA
+              layout: 2-panels
+              content: |
+                # Sample content New Page
+
+                <<<<<library-assessment>>>>>
+              pageTitle: Library 3
+              buttonText: Check It!
+            body:
+              freeTextAuto:
+                command: bash grade.sh
+                showGuidanceAfterResponseOption:
+                  never: {}
+    DownloadStatus:
+      example:
+        error: Build internal problem
+        done: true
+        taskId: 109c46bb3f59ee6c6ff2748dbeb2c8f8
+        url: https://archives.codio.com/temporary/1726643932035.zip
+      properties:
+        taskId:
+          description: Task identification
+          example: 109c46bb3f59ee6c6ff2748dbeb2c8f8
+          type: string
+        done:
+          description: Task status
+          example: true
+          type: boolean
+        url:
+          description: If task completed - url for download
+          example: https://archives.codio.com/temporary/1726643932035.zip
+          type: string
+        error:
+          description: Error description if task failed
+          example: Build internal problem
+          type: string
+    Assignment:
+      example:
+        name: My First Assignment
+        id: 1330b7166db223a097e07a20d955d17e
+      properties:
+        name:
+          description: Assignment name
+          example: My First Assignment
+          type: string
+        id:
+          description: Assignment identifier
+          example: 1330b7166db223a097e07a20d955d17e
+          type: string
+    Course:
+      example:
+        archivedDate: 2024-09-25T09:12:00Z
+        archived: true
+        timezone: America/New_York
+        name: My First Course
+        start: 2024-08-29T09:32:55Z
+        description: This is a beginner level course on programming.
+        end: 2024-09-25T09:12:00Z
+        id: d0a58fde6176c490502f692ff48d2718
+        creationDate: 2024-08-29T09:32:55Z
+        modules:
+        - assignments:
+          - name: My First Assignment
+            id: 1330b7166db223a097e07a20d955d17e
+          - name: My First Assignment
+            id: 1330b7166db223a097e07a20d955d17e
+          name: My First Module
+          id: 5959f3bb354cd1bc72fb53f993812900
+        - assignments:
+          - name: My First Assignment
+            id: 1330b7166db223a097e07a20d955d17e
+          - name: My First Assignment
+            id: 1330b7166db223a097e07a20d955d17e
+          name: My First Module
+          id: 5959f3bb354cd1bc72fb53f993812900
+        tags:
+        - programming
+        - beginner
+      properties:
+        name:
+          description: Course name
+          example: My First Course
+          type: string
+        description:
+          description: Course description
+          example: This is a beginner level course on programming.
+          type: string
+        start:
+          description: "Course start date, ISO Date String"
+          example: 2024-08-29T09:32:55Z
+          type: string
+        end:
+          description: "Course end date, ISO Date String"
+          example: 2024-09-25T09:12:00Z
+          type: string
+        timezone:
+          description: Course timezone
+          example: America/New_York
+          type: string
+        tags:
+          description: Course tags
+          example:
+          - programming
+          - beginner
+          items:
+            type: string
+          type: array
+        id:
+          description: Course identifier
+          example: d0a58fde6176c490502f692ff48d2718
+          type: string
+        modules:
+          items:
+            $ref: "#/components/schemas/Module"
+          type: array
+        creationDate:
+          description: "Course create date, ISO Date String"
+          example: 2024-08-29T09:32:55Z
+          type: string
+        archivedDate:
+          description: "Course archive date, ISO Date String"
+          example: 2024-09-25T09:12:00Z
+          type: string
+        archived:
+          description: Archived course state
+          example: true
+          type: boolean
+    ListCourses:
+      example:
+        courses:
+        - archivedDate: 2024-09-25T09:12:00Z
+          archived: true
+          timezone: America/New_York
+          name: My First Course
+          start: 2024-08-29T09:32:55Z
+          description: This is a beginner level course on programming.
+          end: 2024-09-25T09:12:00Z
+          id: d0a58fde6176c490502f692ff48d2718
+          creationDate: 2024-08-29T09:32:55Z
+          modules:
+          - assignments:
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            name: My First Module
+            id: 5959f3bb354cd1bc72fb53f993812900
+          - assignments:
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            name: My First Module
+            id: 5959f3bb354cd1bc72fb53f993812900
+          tags:
+          - programming
+          - beginner
+        - archivedDate: 2024-09-25T09:12:00Z
+          archived: true
+          timezone: America/New_York
+          name: My First Course
+          start: 2024-08-29T09:32:55Z
+          description: This is a beginner level course on programming.
+          end: 2024-09-25T09:12:00Z
+          id: d0a58fde6176c490502f692ff48d2718
+          creationDate: 2024-08-29T09:32:55Z
+          modules:
+          - assignments:
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            name: My First Module
+            id: 5959f3bb354cd1bc72fb53f993812900
+          - assignments:
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            - name: My First Assignment
+              id: 1330b7166db223a097e07a20d955d17e
+            name: My First Module
+            id: 5959f3bb354cd1bc72fb53f993812900
+          tags:
+          - programming
+          - beginner
+        nextToken: bec78e6afc398db44b2a2477fc28709c
+      properties:
+        courses:
+          description: List of courses
+          items:
+            $ref: "#/components/schemas/Course"
+          type: array
+        nextToken:
+          description: If specified and not empty - next search data portion token
+          example: bec78e6afc398db44b2a2477fc28709c
+          type: string
+    Module:
+      example:
+        assignments:
+        - name: My First Assignment
+          id: 1330b7166db223a097e07a20d955d17e
+        - name: My First Assignment
+          id: 1330b7166db223a097e07a20d955d17e
+        name: My First Module
+        id: 5959f3bb354cd1bc72fb53f993812900
+      properties:
+        name:
+          description: Module name
+          example: My First Module
+          type: string
+        id:
+          description: Module identifier
+          example: 5959f3bb354cd1bc72fb53f993812900
+          type: string
+        assignments:
+          items:
+            $ref: "#/components/schemas/Assignment"
+          type: array
+    ArchiveCourse:
+      example:
+        archivedDate: 2024-09-25T09:12:00Z
+      properties:
+        archivedDate:
+          description: "Course archive date, ISO Date String"
+          example: 2024-09-25T09:12:00Z
+          type: string
+    CreateCourse:
+      example:
+        timezone: America/New_York
+        name: Introduction to Programming
+        start: 2024-08-29T09:32:55Z
+        description: This course covers the basics of programming.
+        end: 2024-09-25T09:12:00Z
+        tags:
+        - programming
+        - beginner
+      properties:
+        name:
+          description: Name of the course
+          example: Introduction to Programming
+          type: string
+        description:
+          description: Description of the course
+          example: This course covers the basics of programming.
+          type: string
+        start:
+          description: "Course start date and time, ISO Date String"
+          example: 2024-08-29T09:32:55Z
+          type: string
+        end:
+          description: "Course end date and time, ISO Date String"
+          example: 2024-09-25T09:12:00Z
+          type: string
+        timezone:
+          description: Timezone of the course
+          example: America/New_York
+          type: string
+        tags:
+          description: Tags associated with the course
+          example:
+          - programming
+          - beginner
+          items:
+            type: string
+          type: array
+    CreateCourseAnswer:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+    CreateCourseModule:
+      example:
+        name: Introduction to Programming
+      properties:
+        name:
+          description: Name of the course module
+          example: Introduction to Programming
+          type: string
+    CreateCourseModuleAnswer:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+    User:
+      example:
+        name: User User
+        id: 10a58fde6176c490102f692ff48d2718
+        login: useruser
+        email: user@example.com
+      properties:
+        id:
+          description: User identifier
+          example: 10a58fde6176c490102f692ff48d2718
+          type: string
+        name:
+          description: User name
+          example: User User
+          type: string
+        login:
+          description: User login
+          example: useruser
+          type: string
+        email:
+          description: User email
+          example: user@example.com
+          type: string
+    AssignmentProgress:
+      description: Assignment progress
+      example:
+        extended_time_limit: 0
+        seconds_spent: 3071
+        grade: 10
+        extended_deadline: 0
+        completion_date: 2024-08-29T09:32:55Z
+        status: STARTED
+      properties:
+        seconds_spent:
+          description: Seconds spent in the assignment
+          example: 3071
+          format: int32
+          type: integer
+        grade:
+          description: Student grade
+          example: 10
+          format: int32
+          type: integer
+        status:
+          description: Assignment status
+          example: STARTED
+          type: string
+        completion_date:
+          description: "Assignment completion date, ISO Date String"
+          example: 2024-08-29T09:32:55Z
+          type: string
+        extended_time_limit:
+          description: Extended time limit
+          example: 0
+          format: int32
+          type: integer
+        extended_deadline:
+          description: Extended deadline
+          example: 0
+          format: int32
+          type: integer
+    AssignmentProgressItem:
+      example:
+        assignment_id: 5959f3bb354cd1bc72fb53f993812900
+        progress:
+          extended_time_limit: 0
+          seconds_spent: 3071
+          grade: 10
+          extended_deadline: 0
+          completion_date: 2024-08-29T09:32:55Z
+          status: STARTED
+        assignment_name: My First Assignment
+        started: true
+      properties:
+        assignment_name:
+          description: Assignment name
+          example: My First Assignment
+          type: string
+        assignment_id:
+          description: Module id
+          example: 5959f3bb354cd1bc72fb53f993812900
+          type: string
+        started:
+          type: boolean
+        progress:
+          $ref: "#/components/schemas/AssignmentProgress"
+    FilterLearnersForMentorsAnswerExample:
+      example:
+        completed: true
+      properties:
+        completed:
+          type: boolean
+    StudentTimeExtension:
+      example:
+        extendedDeadline: 100
+        extendedTimeLimit: 200
+      properties:
+        extendedDeadline:
+          description: Extended assignment deadline for student
+          example: 100
+          format: int32
+          type: integer
+        extendedTimeLimit:
+          description: Extended exam time limit for student
+          example: 200
+          format: int32
+          type: integer
+    AssignmentSettingsResult:
+      example:
+        disableDownloadByStudent: true
+        penaltiesV2:
+          deductionPercent: 6
+          lowestGradePercent: 1
+          enabled: true
+          deductionIntervalMinutes: 0
+        releaseGrades: true
+        visibilityOnCompleted: READ_ONLY_RESUBMIT
+        dueTime: dueTime
+        examMode:
+          forwardOnlyNavigation: true
+          singleLogin: true
+          shuffleQuestionsOrder: true
+          restrictedIPRange:
+            range: |-
+              1.1.1.1
+              8.8.0.0/16
+            enabled: false
+          timedMode:
+            duration: 5
+            enabled: true
+          authentication: true
+        visibilityOnDisabled: READ_ONLY
+        enableResetAssignmentByStudent: true
+        action: COMPLETE
+        startTime: startTime
+        isDisabled: true
+        endTime: endTime
+        markAsCompleteOnDueDate: true
+      properties:
+        isDisabled:
+          type: boolean
+        releaseGrades:
+          type: boolean
+        enableResetAssignmentByStudent:
+          type: boolean
+        disableDownloadByStudent:
+          type: boolean
+        visibilityOnDisabled:
+          description: Assignment visibility
+          enum:
+          - READ_ONLY
+          - NO_ACCESS
+          type: string
+        visibilityOnCompleted:
+          description: Assignment visibility on completed
+          enum:
+          - READ_ONLY_RESUBMIT
+          - READ_ONLY
+          - NO_ACCESS
+          type: string
+        penaltiesV2:
+          $ref: "#/components/schemas/PenaltySettings"
+        startTime:
+          type: string
+        dueTime:
+          type: string
+        markAsCompleteOnDueDate:
+          type: boolean
+        endTime:
+          type: string
+        action:
+          description: Assignment action on completed
+          enum:
+          - COMPLETE
+          - DISABLE
+          - DISABLE_AND_COMPLETE
+          type: string
+        examMode:
+          $ref: "#/components/schemas/ExamMode"
+    ExamMode:
+      example:
+        forwardOnlyNavigation: true
+        singleLogin: true
+        shuffleQuestionsOrder: true
+        restrictedIPRange:
+          range: |-
+            1.1.1.1
+            8.8.0.0/16
+          enabled: false
+        timedMode:
+          duration: 5
+          enabled: true
+        authentication: true
+      properties:
+        timedMode:
+          $ref: "#/components/schemas/TimedExamMode"
+        shuffleQuestionsOrder:
+          type: boolean
+        forwardOnlyNavigation:
+          type: boolean
+        singleLogin:
+          type: boolean
+        authentication:
+          type: boolean
+        restrictedIPRange:
+          $ref: "#/components/schemas/RestrictedIPRange"
+    PenaltySettings:
+      example:
+        deductionPercent: 6
+        lowestGradePercent: 1
+        enabled: true
+        deductionIntervalMinutes: 0
+      properties:
+        enabled:
+          type: boolean
+        deductionIntervalMinutes:
+          format: int32
+          type: integer
+        deductionPercent:
+          format: int32
+          type: integer
+        lowestGradePercent:
+          format: int32
+          type: integer
+    RestrictedIPRange:
+      example:
+        range: |-
+          1.1.1.1
+          8.8.0.0/16
+        enabled: false
+      properties:
+        enabled:
+          default: false
+          type: boolean
+        range:
+          description: |-
+            Each ip from new line.
+            Can specify IP or subnet.
+          example: |-
+            1.1.1.1
+            8.8.0.0/16
+          type: string
+    TimedExamMode:
+      example:
+        duration: 5
+        enabled: true
+      properties:
+        enabled:
+          type: boolean
+        duration:
+          format: int32
+          type: integer
+    StudentInformation:
+      example:
+        student_name: User User
+        seconds_spent: 3071
+        grade: 60
+        extendedDeadline: 0
+        student_id: 10a58fde6176c490102f692ff48d2718
+        extra_credit: 10
+        completion_date: 2024-08-29T09:32:55Z
+        student_email: user@example.com
+        extendedTimeLimit: 0
+        status: STARTED
+      properties:
+        student_id:
+          description: Student identification
+          example: 10a58fde6176c490102f692ff48d2718
+          type: string
+        student_email:
+          description: Student email if available
+          example: user@example.com
+          type: string
+        student_name:
+          description: Student actual name
+          example: User User
+          type: string
+        seconds_spent:
+          description: Seconds spent in the assignment
+          example: 3071
+          format: int32
+          type: integer
+        grade:
+          description: "Optional assignment grade, 0-100"
+          example: 60
+          format: int32
+          type: integer
+        extra_credit:
+          description: Optional extra points
+          example: 10
+          format: int32
+          type: integer
+        status:
+          description: "Assignment status: STARTED, NOT_STARTED, COMPLETED"
+          example: STARTED
+          type: string
+        completion_date:
+          description: "Assignment completion date, ISO Date String"
+          example: 2024-08-29T09:32:55Z
+          format: date-time
+          type: string
+        extendedDeadline:
+          description: Extended deadline
+          example: 0
+          format: int32
+          type: integer
+        extendedTimeLimit:
+          description: Extended time limit
+          example: 0
+          format: int32
+          type: integer
+    AssignmentSettings:
+      example:
+        disableDownloadByStudent: true
+        penaltiesV2:
+          deductionPercent: 6
+          lowestGradePercent: 1
+          enabled: true
+          deductionIntervalMinutes: 0
+        start: start
+        releaseGrades: true
+        visibilityOnCompleted: READ_ONLY_RESUBMIT
+        examMode:
+          forwardOnlyNavigation: true
+          singleLogin: true
+          shuffleQuestionsOrder: true
+          restrictedIPRange:
+            range: |-
+              1.1.1.1
+              8.8.0.0/16
+            enabled: false
+          timedMode:
+            duration: 5
+            enabled: true
+          authentication: true
+        visibilityOnDisabled: READ_ONLY
+        enableResetAssignmentByStudent: true
+        due: due
+        action: COMPLETE
+        end: end
+        isDisabled: true
+        markAsCompleteOnDueDate: true
+      properties:
+        isDisabled:
+          type: boolean
+        releaseGrades:
+          type: boolean
+        enableResetAssignmentByStudent:
+          type: boolean
+        disableDownloadByStudent:
+          type: boolean
+        visibilityOnDisabled:
+          description: Assignment visibility
+          enum:
+          - READ_ONLY
+          - NO_ACCESS
+          type: string
+        visibilityOnCompleted:
+          description: Assignment visibility on completed
+          enum:
+          - READ_ONLY_RESUBMIT
+          - READ_ONLY
+          - NO_ACCESS
+          type: string
+        penaltiesV2:
+          $ref: "#/components/schemas/PenaltySettings"
+        examMode:
+          $ref: "#/components/schemas/ExamMode"
+        start:
+          type: string
+        due:
+          type: string
+        markAsCompleteOnDueDate:
+          type: boolean
+        end:
+          type: string
+        action:
+          description: Assignment action on completed
+          enum:
+          - COMPLETE
+          - DISABLE
+          - DISABLE_AND_COMPLETE
+          type: string
+    CreateAssignment:
+      example:
+        settings:
+          gigaboxSlot:
+            boxType: 1gb
+          name: My First Assignment
+          description: This assignment covers the basics of programming.
+        moduleId: a1b2c3d4e5f60718293a4b5c6d7e8f90
+      properties:
+        moduleId:
+          description: Module identifier
+          example: a1b2c3d4e5f60718293a4b5c6d7e8f90
+          type: string
+        settings:
+          $ref: "#/components/schemas/CreateAssignmentSettings"
+    CreateAssignmentSettings:
+      example:
+        gigaboxSlot:
+          boxType: 1gb
+        name: My First Assignment
+        description: This assignment covers the basics of programming.
+      properties:
+        name:
+          description: Name of the assignment
+          example: My First Assignment
+          type: string
+        description:
+          description: Description of the assignment
+          example: This assignment covers the basics of programming.
+          type: string
+        gigaboxSlot:
+          $ref: "#/components/schemas/GigaBoxSlot"
+    GigaBoxSlot:
+      example:
+        boxType: 1gb
+      properties:
+        boxType:
+          description: Type of the GigaBox
+          enum:
+          - standard
+          - 1gb
+          - 2gb
+          - 4gb
+          - 8gb
+          - 16gb
+          - gpu
+          example: 1gb
+          type: string
+    CreateAssignmentAnswer:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+    updateBooks_request:
+      properties:
+        bookId: {}
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: token
+      scheme: bearer
+      type: http
