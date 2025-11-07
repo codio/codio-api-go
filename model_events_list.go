@@ -20,7 +20,7 @@ var _ MappedNullable = &EventsList{}
 // EventsList struct for EventsList
 type EventsList struct {
 	// Event data
-	Events []Event `json:"events,omitempty"`
+	Events *string `json:"events,omitempty"`
 	// Continuation request token
 	NextToken *string `json:"nextToken,omitempty"`
 }
@@ -43,17 +43,17 @@ func NewEventsListWithDefaults() *EventsList {
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
-func (o *EventsList) GetEvents() []Event {
+func (o *EventsList) GetEvents() string {
 	if o == nil || IsNil(o.Events) {
-		var ret []Event
+		var ret string
 		return ret
 	}
-	return o.Events
+	return *o.Events
 }
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventsList) GetEventsOk() ([]Event, bool) {
+func (o *EventsList) GetEventsOk() (*string, bool) {
 	if o == nil || IsNil(o.Events) {
 		return nil, false
 	}
@@ -69,9 +69,9 @@ func (o *EventsList) HasEvents() bool {
 	return false
 }
 
-// SetEvents gets a reference to the given []Event and assigns it to the Events field.
-func (o *EventsList) SetEvents(v []Event) {
-	o.Events = v
+// SetEvents gets a reference to the given string and assigns it to the Events field.
+func (o *EventsList) SetEvents(v string) {
+	o.Events = &v
 }
 
 // GetNextToken returns the NextToken field value if set, zero value otherwise.

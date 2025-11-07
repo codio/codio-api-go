@@ -25,7 +25,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -49,7 +49,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stackId** | **string** | Stack id | 
+**stackId** | **string** | Stack id |
 
 ### Other Parameters
 
@@ -93,12 +93,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
 	stackId := "stackId_example" // string | Stack id
-	id := "id_example" // string | 
+	id := "id_example" // string |
 	provisioner := "provisioner_example" // string | Provisioner type (optional)
 	content := "content_example" // string | Optional provision instructions. Content or bundle should be specified (optional)
 	message := "message_example" // string |  (optional)
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stackId** | **string** | Stack id | 
+**stackId** | **string** | Stack id |
 
 ### Other Parameters
 
@@ -132,11 +132,11 @@ Other parameters are passed through a pointer to a apiStackVersionsPublishReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **id** | **string** |  | 
- **provisioner** | **string** | Provisioner type | 
- **content** | **string** | Optional provision instructions. Content or bundle should be specified | 
- **message** | **string** |  | 
- **file** | ***os.File** | Optional bundle for provisioner. Content or bundle should be specified | 
+ **id** | **string** |  |
+ **provisioner** | **string** | Provisioner type |
+ **content** | **string** | Optional provision instructions. Content or bundle should be specified |
+ **message** | **string** |  |
+ **file** | ***os.File** | Optional bundle for provisioner. Content or bundle should be specified |
 
 ### Return type
 
@@ -171,7 +171,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -196,8 +196,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stackId** | **string** | Stack id | 
-**taskId** | **string** | Task id | 
+**stackId** | **string** | Stack id |
+**taskId** | **string** | Task id |
 
 ### Other Parameters
 
@@ -225,4 +225,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

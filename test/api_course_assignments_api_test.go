@@ -11,10 +11,10 @@ package codioapi
 
 import (
 	"context"
+	openapiclient "github.com/codio/codio-api-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService AssignmentStudentsInfo", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -39,7 +39,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService AssignmentVersionPublish", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -54,7 +54,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService AssignmentVersionPublishesStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -70,7 +70,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService CreateProjectBasedAssignment", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -84,7 +84,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService FetchAssignmentSettings", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -99,7 +99,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService UpdateAssignmentSettings", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -114,7 +114,7 @@ func Test_codioapi_CourseAssignmentsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAssignmentsAPIAPIService UpdateStudentTimeExtensions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string

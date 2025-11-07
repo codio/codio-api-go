@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Events** | Pointer to [**[]Event**](Event.md) | Event data | [optional] 
+**Events** | Pointer to **string** | Event data | [optional] 
 **NextToken** | Pointer to **string** | Continuation request token | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEvents
 
-`func (o *EventsList) GetEvents() []Event`
+`func (o *EventsList) GetEvents() string`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *EventsList) GetEventsOk() (*[]Event, bool)`
+`func (o *EventsList) GetEventsOk() (*string, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *EventsList) SetEvents(v []Event)`
+`func (o *EventsList) SetEvents(v string)`
 
 SetEvents sets Events field to given value.
 

@@ -1,7 +1,7 @@
 /*
 Codio API
 
-Testing EventsAPIAPIService
+Testing CourseMembersAPIAPIService
 
 */
 
@@ -17,16 +17,18 @@ import (
 	"testing"
 )
 
-func Test_codioapi_EventsAPIAPIService(t *testing.T) {
+func Test_codioapi_CourseMembersAPIAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test EventsAPIAPIService EventList", func(t *testing.T) {
+	t.Run("Test CourseMembersAPIAPIService AddTeacher", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.EventsAPIAPI.EventList(context.Background()).Execute()
+		var courseId string
+
+		resp, httpRes, err := apiClient.CourseMembersAPIAPI.AddTeacher(context.Background(), courseId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

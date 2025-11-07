@@ -29,6 +29,7 @@ paths:
         schema:
           maximum: 200
           minimum: 10
+          type: string
         style: form
       responses:
         "200":
@@ -127,116 +128,6 @@ paths:
       summary: Get book publish status
       tags:
       - Course books API
-  /api/v1/stacks/{stackId}:
-    get:
-      operationId: stackInfo
-      parameters:
-      - description: Stack id
-        explode: false
-        in: path
-        name: stackId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StackInfo"
-          description: Successful operation
-        "401":
-          description: Incorrect or expired bearer token
-        "403":
-          description: Access denied for bearer token
-        "404":
-          description: Stack not found
-      security:
-      - bearerAuth: []
-      summary: Get stack information
-      tags:
-      - Stack API
-  /api/v1/stacks/{stackId}/tasks/{taskId}:
-    get:
-      operationId: stackVersionsPublishStatus
-      parameters:
-      - description: Stack id
-        explode: false
-        in: path
-        name: stackId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Task id
-        explode: false
-        in: path
-        name: taskId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StackPublishInfo"
-          description: Successful operation
-        "401":
-          description: Incorrect or expired bearer token
-        "403":
-          description: Access denied for bearer token
-        "404":
-          description: Stack or task not found
-      security:
-      - bearerAuth: []
-      summary: Get stack version publish information
-      tags:
-      - Stack API
-  /api/v1/stacks/{stackId}/versions:
-    post:
-      operationId: stackVersionsPublish
-      parameters:
-      - description: Stack id
-        explode: false
-        in: path
-        name: stackId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          multipart/form-data:
-            encoding:
-              file:
-                contentType: application/x-gtar
-                style: form
-            schema:
-              $ref: "#/components/schemas/ProvisionVersionInfoFormData"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/ProvisionVersionInfoEncoded"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TaskProgress"
-          description: Successful operation
-        "401":
-          description: Incorrect or expired bearer token
-        "403":
-          description: Access denied for bearer token
-        "404":
-          description: Stack or task not found
-      security:
-      - bearerAuth: []
-      summary: Publish new stack version
-      tags:
-      - Stack API
   /api/v1/assessment_library:
     get:
       operationId: listLibraries
@@ -363,6 +254,7 @@ paths:
                     command: bash grade.sh
                     showGuidanceAfterResponseOption:
                       never: {}
+              type: string
       responses:
         "200":
           content:
@@ -397,6 +289,7 @@ paths:
                       command: bash grade.sh
                       showGuidanceAfterResponseOption:
                         never: {}
+                type: string
           description: Successful operation
         "401":
           description: Incorrect or expired bearer token
@@ -463,6 +356,7 @@ paths:
                       command: bash grade.sh
                       showGuidanceAfterResponseOption:
                         never: {}
+                type: string
           description: Successful operation
         "401":
           description: Incorrect or expired bearer token
@@ -534,6 +428,7 @@ paths:
                     command: bash grade.sh
                     showGuidanceAfterResponseOption:
                       never: {}
+              type: string
       responses:
         "200":
           content:
@@ -568,6 +463,7 @@ paths:
                       command: bash grade.sh
                       showGuidanceAfterResponseOption:
                         never: {}
+                type: string
           description: Successful operation
         "401":
           description: Incorrect or expired bearer token
@@ -1372,6 +1268,40 @@ paths:
       summary: List Course Teachers
       tags:
       - Course API
+    post:
+      operationId: addTeacher
+      parameters:
+      - description: Course id
+        explode: false
+        in: path
+        name: courseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddTeacherToCourse"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddTeacherToCourseAnswer"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "412":
+          description: Incorrect add configuration
+      security:
+      - bearerAuth: []
+      summary: Add teacher to course
+      tags:
+      - Course Members API
   /api/v1/courses/{courseId}/students:
     get:
       operationId: listCourseStudents
@@ -1550,6 +1480,7 @@ paths:
                 learnerIds:
                 - learner3@email
                 - learner4@email
+              type: string
       responses:
         "200":
           content:
@@ -1706,6 +1637,7 @@ paths:
             application/json:
               schema:
                 example: {}
+                type: string
           description: Successful operation
         "401":
           description: Incorrect or expired bearer token
@@ -1873,98 +1805,118 @@ paths:
       summary: Create Project Based Assignment
       tags:
       - Course assignments API
+  /api/v1/stacks/{stackId}:
+    get:
+      operationId: stackInfo
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StackInfo"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack not found
+      security:
+      - bearerAuth: []
+      summary: Get stack information
+      tags:
+      - Stack API
+  /api/v1/stacks/{stackId}/tasks/{taskId}:
+    get:
+      operationId: stackVersionsPublishStatus
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StackPublishInfo"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack or task not found
+      security:
+      - bearerAuth: []
+      summary: Get stack version publish information
+      tags:
+      - Stack API
+  /api/v1/stacks/{stackId}/versions:
+    post:
+      operationId: stackVersionsPublish
+      parameters:
+      - description: Stack id
+        explode: false
+        in: path
+        name: stackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                contentType: application/x-gtar
+                style: form
+            schema:
+              $ref: "#/components/schemas/ProvisionVersionInfoFormData"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ProvisionVersionInfoEncoded"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskProgress"
+          description: Successful operation
+        "401":
+          description: Incorrect or expired bearer token
+        "403":
+          description: Access denied for bearer token
+        "404":
+          description: Stack or task not found
+      security:
+      - bearerAuth: []
+      summary: Publish new stack version
+      tags:
+      - Stack API
 components:
   schemas:
-    Event:
-      description: Event data
-      example:
-      - event:
-          event: ASSIGNMENT_COMPLETE
-          data:
-            student_id: 00112233-4455-6677-8888-999999999999
-            student_email: email@example.com
-            student_name: Student A Test
-            course_status:
-              completed: 1
-              in_progress: 1
-              not_started: 1
-            course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
-            course_name: Course Name
-            assignment_id: 73472b0688330b25012d4c01f110bbbd
-            assignment_name: Assignment Name
-            assignment_status: COMPLETED
-            assignment_grade: 58
-            assignment_completion_date: 2024-09-13T09:06:39.019Z
-            module_id: 7104b5fc44330095d783b8bb68853a1b
-            module_name: Module Name
-        completed: false
-        error: "Webhook answered with code: 500"
-        issuedAt: 2024-08-29T09:32:55Z
-      - event:
-          event: ASSIGNMENT_GRADING_FAILED
-          data:
-            courseName: Course Name
-            assignmentName: Assignment Name
-            error: Error stack trace
-            studentName: Student A Test
-        completed: true
-        error: ""
-        issuedAt: 2024-08-29T09:52:55Z
-      properties:
-        event:
-          additionalProperties:
-            description: Event data
-            example:
-              event: ASSIGNMENT_COMPLETE
-              data:
-                student_id: 00112233-4455-6677-8888-999999999999
-                student_email: email@example.com
-                student_name: Student A Test
-                course_status:
-                  completed: 1
-                  in_progress: 1
-                  not_started: 1
-                course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
-                course_name: Course Name
-                assignment_id: 73472b0688330b25012d4c01f110bbbd
-                assignment_name: Assignment Name
-                assignment_status: COMPLETED
-                assignment_grade: 58
-                assignment_completion_date: 2024-09-13T09:06:39.019Z
-                module_id: 7104b5fc44330095d783b8bb68853a1b
-                module_name: Module Name
-          description: Event data
-          example:
-            event: ASSIGNMENT_COMPLETE
-            data:
-              student_id: 00112233-4455-6677-8888-999999999999
-              student_email: email@example.com
-              student_name: Student A Test
-              course_status:
-                completed: 1
-                in_progress: 1
-                not_started: 1
-              course_id: fe856a71c9f1e2a0095d5c6d4a041bb7
-              course_name: Course Name
-              assignment_id: 73472b0688330b25012d4c01f110bbbd
-              assignment_name: Assignment Name
-              assignment_status: COMPLETED
-              assignment_grade: 58
-              assignment_completion_date: 2024-09-13T09:06:39.019Z
-              module_id: 7104b5fc44330095d783b8bb68853a1b
-              module_name: Module Name
-        completed:
-          description: Event was successfully send to target url
-          example: false
-          type: boolean
-        error:
-          description: Optional error description
-          example: "Webhook answered with code: 500"
-          type: string
-        issuedAt:
-          description: ISO Date String
-          example: 2024-08-29T09:32:55Z
-          type: string
     EventsList:
       example:
         nextToken: nextToken
@@ -2037,9 +1989,7 @@ components:
             completed: true
             error: ""
             issuedAt: 2024-08-29T09:52:55Z
-          items:
-            $ref: "#/components/schemas/Event"
-          type: array
+          type: string
         nextToken:
           description: Continuation request token
           type: string
@@ -2088,110 +2038,6 @@ components:
         error:
           description: Optional task error description
           type: string
-    StackInfo:
-      example:
-        owner: owner
-        short_description: short_description
-        versions:
-        - date: 2024-08-29T09:32:55Z
-          changelog: changelog
-          id: id
-        - date: 2024-08-29T09:32:55Z
-          changelog: changelog
-          id: id
-        installations: 100
-        name: name
-        id: id
-        long_description: long_description
-        owner_type: owner_type
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        long_description:
-          type: string
-        short_description:
-          type: string
-        owner:
-          type: string
-        owner_type:
-          type: string
-        versions:
-          items:
-            $ref: "#/components/schemas/StackVersionInfo"
-          type: array
-        installations:
-          example: 100
-          format: int64
-          type: integer
-    StackVersionInfo:
-      example:
-        date: 2024-08-29T09:32:55Z
-        changelog: changelog
-        id: id
-      properties:
-        id:
-          type: string
-        changelog:
-          type: string
-        date:
-          description: ISO Date String
-          example: 2024-08-29T09:32:55Z
-          type: string
-    StackPublishInfo:
-      example:
-        provision_log: provision_log
-        error: error
-        status: status
-      properties:
-        status:
-          type: string
-        error:
-          type: string
-        provision_log:
-          type: string
-    ProvisionVersionInfoFormData:
-      properties:
-        id:
-          type: string
-        provisioner:
-          description: Provisioner type
-          enum:
-          - BASH
-          - ANSIBLE
-          type: string
-        content:
-          description: Optional provision instructions. Content or bundle should be
-            specified
-          type: string
-        message:
-          type: string
-        file:
-          description: Optional bundle for provisioner. Content or bundle should be
-            specified
-          format: binary
-          type: string
-      required:
-      - id
-    ProvisionVersionInfoEncoded:
-      properties:
-        id:
-          type: string
-        provisioner:
-          description: Provisioner type
-          enum:
-          - BASH
-          - ANSIBLE
-          type: string
-        content:
-          description: Provision instructions
-          type: string
-        message:
-          type: string
-      required:
-      - content
-      - id
     SocratesLibrary:
       example:
         createdBy: createdBy
@@ -2618,7 +2464,6 @@ components:
           example: user@example.com
           type: string
     AssignmentProgress:
-      description: Assignment progress
       example:
         extended_time_limit: 0
         seconds_spent: 3071
@@ -3031,9 +2876,135 @@ components:
       properties:
         id:
           type: string
+    StackInfo:
+      example:
+        owner: owner
+        short_description: short_description
+        versions:
+        - date: 2024-08-29T09:32:55Z
+          changelog: changelog
+          id: id
+        - date: 2024-08-29T09:32:55Z
+          changelog: changelog
+          id: id
+        installations: 100
+        name: name
+        id: id
+        long_description: long_description
+        owner_type: owner_type
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        long_description:
+          type: string
+        short_description:
+          type: string
+        owner:
+          type: string
+        owner_type:
+          type: string
+        versions:
+          items:
+            $ref: "#/components/schemas/StackVersionInfo"
+          type: array
+        installations:
+          example: 100
+          format: int64
+          type: integer
+    StackVersionInfo:
+      example:
+        date: 2024-08-29T09:32:55Z
+        changelog: changelog
+        id: id
+      properties:
+        id:
+          type: string
+        changelog:
+          type: string
+        date:
+          description: ISO Date String
+          example: 2024-08-29T09:32:55Z
+          type: string
+    StackPublishInfo:
+      example:
+        provision_log: provision_log
+        error: error
+        status: status
+      properties:
+        status:
+          type: string
+        error:
+          type: string
+        provision_log:
+          type: string
+    ProvisionVersionInfoFormData:
+      properties:
+        id:
+          type: string
+        provisioner:
+          description: Provisioner type
+          enum:
+          - BASH
+          - ANSIBLE
+          type: string
+        content:
+          description: Optional provision instructions. Content or bundle should be
+            specified
+          type: string
+        message:
+          type: string
+        file:
+          description: Optional bundle for provisioner. Content or bundle should be
+            specified
+          format: binary
+          type: string
+      required:
+      - id
+    ProvisionVersionInfoEncoded:
+      properties:
+        id:
+          type: string
+        provisioner:
+          description: Provisioner type
+          enum:
+          - BASH
+          - ANSIBLE
+          type: string
+        content:
+          description: Provision instructions
+          type: string
+        message:
+          type: string
+      required:
+      - content
+      - id
+    AddTeacherToCourse:
+      example:
+        readOnly: false
+        userId: 10a58fde6176c490102f692ff48d2718
+      properties:
+        userId:
+          description: User identifier
+          example: 10a58fde6176c490102f692ff48d2718
+          type: string
+        readOnly:
+          description: "Teacher access, it will be ignored for org owners."
+          example: false
+          type: boolean
+    AddTeacherToCourseAnswer:
+      example:
+        completed: true
+      properties:
+        completed:
+          type: boolean
     updateBooks_request:
       properties:
-        bookId: {}
+        bookId:
+          description: Book id to process
+          example: 5959f3bb354cd1bc72fb53f993812900
+          type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: token

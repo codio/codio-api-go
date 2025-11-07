@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *CourseExportsAPIAPI* | [**FetchDownloadStatus**](docs/CourseExportsAPIAPI.md#fetchdownloadstatus) | **Get** /api/v1/courses/{courseId}/export/assessments/csv/download/{taskId} | Fetch Export Assessment Data CSV Status
 *CourseExportsAPIAPI* | [**FetchDownloadStatusStudent**](docs/CourseExportsAPIAPI.md#fetchdownloadstatusstudent) | **Get** /api/v1/courses/{courseId}/assignments/{assignmentId}/students/{studentId}/download/{taskId} | Fetch Export Student Data CSV Status
 *CourseExportsAPIAPI* | [**StartedAssignmentDownload**](docs/CourseExportsAPIAPI.md#startedassignmentdownload) | **Get** /api/v1/courses/{courseId}/assignments/{assignmentId}/students/{studentId}/download | Fetch Export Assessment Data CSV Status
+*CourseMembersAPIAPI* | [**AddTeacher**](docs/CourseMembersAPIAPI.md#addteacher) | **Post** /api/v1/courses/{courseId}/teachers | Add teacher to course
 *EventsAPIAPI* | [**EventList**](docs/EventsAPIAPI.md#eventlist) | **Get** /api/v1/events | List Webhook Events
 *StackAPIAPI* | [**StackInfo**](docs/StackAPIAPI.md#stackinfo) | **Get** /api/v1/stacks/{stackId} | Get stack information
 *StackAPIAPI* | [**StackVersionsPublish**](docs/StackAPIAPI.md#stackversionspublish) | **Post** /api/v1/stacks/{stackId}/versions | Publish new stack version
@@ -127,6 +128,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AddTeacherToCourse](docs/AddTeacherToCourse.md)
+ - [AddTeacherToCourseAnswer](docs/AddTeacherToCourseAnswer.md)
  - [ArchiveCourse](docs/ArchiveCourse.md)
  - [Assignment](docs/Assignment.md)
  - [AssignmentProgress](docs/AssignmentProgress.md)
@@ -142,7 +145,6 @@ Class | Method | HTTP request | Description
  - [CreateCourseModule](docs/CreateCourseModule.md)
  - [CreateCourseModuleAnswer](docs/CreateCourseModuleAnswer.md)
  - [DownloadStatus](docs/DownloadStatus.md)
- - [Event](docs/Event.md)
  - [EventsList](docs/EventsList.md)
  - [ExamMode](docs/ExamMode.md)
  - [FilterLearnersForMentorsAnswerExample](docs/FilterLearnersForMentorsAnswerExample.md)
@@ -198,5 +200,3 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrTime`
 
 ## Author
-
-Max

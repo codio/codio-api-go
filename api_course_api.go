@@ -570,10 +570,10 @@ type ApiFilterLearnersForMentorsRequest struct {
 	ctx context.Context
 	ApiService *CourseAPIAPIService
 	courseId string
-	body *interface{}
+	body *string
 }
 
-func (r ApiFilterLearnersForMentorsRequest) Body(body interface{}) ApiFilterLearnersForMentorsRequest {
+func (r ApiFilterLearnersForMentorsRequest) Body(body string) ApiFilterLearnersForMentorsRequest {
 	r.body = &body
 	return r
 }
@@ -1104,10 +1104,11 @@ type ApiUpdateBooksRequest struct {
 	ctx context.Context
 	ApiService *CourseAPIAPIService
 	courseId string
-	bookId *interface{}
+	bookId *string
 }
 
-func (r ApiUpdateBooksRequest) BookId(bookId interface{}) ApiUpdateBooksRequest {
+// Book id to process
+func (r ApiUpdateBooksRequest) BookId(bookId string) ApiUpdateBooksRequest {
 	r.bookId = &bookId
 	return r
 }

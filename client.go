@@ -59,6 +59,8 @@ type APIClient struct {
 
 	CourseExportsAPIAPI *CourseExportsAPIAPIService
 
+	CourseMembersAPIAPI *CourseMembersAPIAPIService
+
 	EventsAPIAPI *EventsAPIAPIService
 
 	StackAPIAPI *StackAPIAPIService
@@ -85,6 +87,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CourseAssignmentsAPIAPI = (*CourseAssignmentsAPIAPIService)(&c.common)
 	c.CourseBooksAPIAPI = (*CourseBooksAPIAPIService)(&c.common)
 	c.CourseExportsAPIAPI = (*CourseExportsAPIAPIService)(&c.common)
+	c.CourseMembersAPIAPI = (*CourseMembersAPIAPIService)(&c.common)
 	c.EventsAPIAPI = (*EventsAPIAPIService)(&c.common)
 	c.StackAPIAPI = (*StackAPIAPIService)(&c.common)
 

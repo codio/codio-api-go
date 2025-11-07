@@ -43,7 +43,7 @@ func (r ApiAssessmentLibraryCreateAssessmentRequest) Assessment(assessment map[s
 	return r
 }
 
-func (r ApiAssessmentLibraryCreateAssessmentRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiAssessmentLibraryCreateAssessmentRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.AssessmentLibraryCreateAssessmentExecute(r)
 }
 
@@ -63,13 +63,13 @@ func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryCreateAssessment(ctx
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryCreateAssessmentExecute(r ApiAssessmentLibraryCreateAssessmentRequest) (interface{}, *http.Response, error) {
+//  @return string
+func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryCreateAssessmentExecute(r ApiAssessmentLibraryCreateAssessmentRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssessmentLibrariesAPIAPIService.AssessmentLibraryCreateAssessment")
@@ -163,7 +163,7 @@ type ApiAssessmentLibraryGetAssessmentRequest struct {
 	id string
 }
 
-func (r ApiAssessmentLibraryGetAssessmentRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiAssessmentLibraryGetAssessmentRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.AssessmentLibraryGetAssessmentExecute(r)
 }
 
@@ -185,13 +185,13 @@ func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryGetAssessment(ctx co
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryGetAssessmentExecute(r ApiAssessmentLibraryGetAssessmentRequest) (interface{}, *http.Response, error) {
+//  @return string
+func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryGetAssessmentExecute(r ApiAssessmentLibraryGetAssessmentRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssessmentLibrariesAPIAPIService.AssessmentLibraryGetAssessment")
@@ -412,7 +412,7 @@ func (r ApiAssessmentLibraryUpdateAssessmentRequest) Assessment(assessment map[s
 	return r
 }
 
-func (r ApiAssessmentLibraryUpdateAssessmentRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiAssessmentLibraryUpdateAssessmentRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.AssessmentLibraryUpdateAssessmentExecute(r)
 }
 
@@ -434,13 +434,13 @@ func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryUpdateAssessment(ctx
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryUpdateAssessmentExecute(r ApiAssessmentLibraryUpdateAssessmentRequest) (interface{}, *http.Response, error) {
+//  @return string
+func (a *AssessmentLibrariesAPIAPIService) AssessmentLibraryUpdateAssessmentExecute(r ApiAssessmentLibraryUpdateAssessmentRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssessmentLibrariesAPIAPIService.AssessmentLibraryUpdateAssessment")

@@ -16,77 +16,68 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
-// EventsAPIAPIService EventsAPIAPI service
-type EventsAPIAPIService service
+// CourseMembersAPIAPIService CourseMembersAPIAPI service
+type CourseMembersAPIAPIService service
 
-type ApiEventListRequest struct {
+type ApiAddTeacherRequest struct {
 	ctx context.Context
-	ApiService *EventsAPIAPIService
-	nextToken *string
-	limit *string
+	ApiService *CourseMembersAPIAPIService
+	courseId string
+	addTeacherToCourse *AddTeacherToCourse
 }
 
-// Continuation request token
-func (r ApiEventListRequest) NextToken(nextToken string) ApiEventListRequest {
-	r.nextToken = &nextToken
+func (r ApiAddTeacherRequest) AddTeacherToCourse(addTeacherToCourse AddTeacherToCourse) ApiAddTeacherRequest {
+	r.addTeacherToCourse = &addTeacherToCourse
 	return r
 }
 
-// Count of returned events
-func (r ApiEventListRequest) Limit(limit string) ApiEventListRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiEventListRequest) Execute() (*EventsList, *http.Response, error) {
-	return r.ApiService.EventListExecute(r)
+func (r ApiAddTeacherRequest) Execute() (*AddTeacherToCourseAnswer, *http.Response, error) {
+	return r.ApiService.AddTeacherExecute(r)
 }
 
 /*
-EventList List Webhook Events
+AddTeacher Add teacher to course
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEventListRequest
+ @param courseId Course id
+ @return ApiAddTeacherRequest
 */
-func (a *EventsAPIAPIService) EventList(ctx context.Context) ApiEventListRequest {
-	return ApiEventListRequest{
+func (a *CourseMembersAPIAPIService) AddTeacher(ctx context.Context, courseId string) ApiAddTeacherRequest {
+	return ApiAddTeacherRequest{
 		ApiService: a,
 		ctx: ctx,
+		courseId: courseId,
 	}
 }
 
 // Execute executes the request
-//  @return EventsList
-func (a *EventsAPIAPIService) EventListExecute(r ApiEventListRequest) (*EventsList, *http.Response, error) {
+//  @return AddTeacherToCourseAnswer
+func (a *CourseMembersAPIAPIService) AddTeacherExecute(r ApiAddTeacherRequest) (*AddTeacherToCourseAnswer, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *EventsList
+		localVarReturnValue  *AddTeacherToCourseAnswer
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIAPIService.EventList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourseMembersAPIAPIService.AddTeacher")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/events"
+	localVarPath := localBasePath + "/api/v1/courses/{courseId}/teachers"
+	localVarPath = strings.Replace(localVarPath, "{"+"courseId"+"}", url.PathEscape(parameterValueToString(r.courseId, "courseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.nextToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "nextToken", r.nextToken, "form", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -102,6 +93,8 @@ func (a *EventsAPIAPIService) EventListExecute(r ApiEventListRequest) (*EventsLi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.addTeacherToCourse
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

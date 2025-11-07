@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## AssessmentLibraryCreateAssessment
 
-> interface{} AssessmentLibraryCreateAssessment(ctx, libraryId).Bundle(bundle).Assessment(assessment).Execute()
+> string AssessmentLibraryCreateAssessment(ctx, libraryId).Bundle(bundle).Assessment(assessment).Execute()
 
 Create assessment
 
@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryCreateAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryCreateAssessment`: interface{}
+	// response from `AssessmentLibraryCreateAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryCreateAssessment`: %v\n", resp)
 }
 ```
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
+**libraryId** | **string** | Library id |
 
 ### Other Parameters
 
@@ -63,12 +63,12 @@ Other parameters are passed through a pointer to a apiAssessmentLibraryCreateAss
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **bundle** | ***os.File** | Optional file archive data to be published | 
- **assessment** | **map[string]interface{}** |  | 
+ **bundle** | ***os.File** | Optional file archive data to be published |
+ **assessment** | **map[string]interface{}** |  |
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## AssessmentLibraryGetAssessment
 
-> interface{} AssessmentLibraryGetAssessment(ctx, libraryId, id).Execute()
+> string AssessmentLibraryGetAssessment(ctx, libraryId, id).Execute()
 
 Get assessment
 
@@ -99,7 +99,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -113,7 +113,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryGetAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryGetAssessment`: interface{}
+	// response from `AssessmentLibraryGetAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryGetAssessment`: %v\n", resp)
 }
 ```
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
-**id** | **string** | Assessment id | 
+**libraryId** | **string** | Library id |
+**id** | **string** | Assessment id |
 
 ### Other Parameters
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 
@@ -170,7 +170,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -197,7 +197,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
+**libraryId** | **string** | Library id |
 
 ### Other Parameters
 
@@ -207,9 +207,9 @@ Other parameters are passed through a pointer to a apiAssessmentLibrarySearchReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **count** | **string** | Optional count parameter | 
- **offset** | **string** | Optional offset parameter | 
- **free** | [**SocrateTagSearchExample**](SocrateTagSearchExample.md) | Free form tag search is allowed | 
+ **count** | **string** | Optional count parameter |
+ **offset** | **string** | Optional offset parameter |
+ **free** | [**SocrateTagSearchExample**](SocrateTagSearchExample.md) | Free form tag search is allowed |
 
 ### Return type
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## AssessmentLibraryUpdateAssessment
 
-> interface{} AssessmentLibraryUpdateAssessment(ctx, libraryId, id).Bundle(bundle).Assessment(assessment).Execute()
+> string AssessmentLibraryUpdateAssessment(ctx, libraryId, id).Bundle(bundle).Assessment(assessment).Execute()
 
 Update assessment
 
@@ -244,7 +244,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -260,7 +260,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryUpdateAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryUpdateAssessment`: interface{}
+	// response from `AssessmentLibraryUpdateAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryUpdateAssessment`: %v\n", resp)
 }
 ```
@@ -271,8 +271,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
-**id** | **string** | Assessment id | 
+**libraryId** | **string** | Library id |
+**id** | **string** | Assessment id |
 
 ### Other Parameters
 
@@ -283,12 +283,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **bundle** | ***os.File** | Optional file archive data to be published | 
- **assessment** | **map[string]interface{}** |  | 
+ **bundle** | ***os.File** | Optional file archive data to be published |
+ **assessment** | **map[string]interface{}** |  |
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 
@@ -319,7 +319,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -361,4 +361,3 @@ Other parameters are passed through a pointer to a apiListLibrariesRequest struc
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
