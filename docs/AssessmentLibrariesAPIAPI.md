@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## AssessmentLibraryCreateAssessment
 
-> interface{} AssessmentLibraryCreateAssessment(ctx, libraryId).Bundle(bundle).Assessment(assessment).Execute()
+> string AssessmentLibraryCreateAssessment(ctx, libraryId).Bundle(bundle).Assessment(assessment).Execute()
 
 Create assessment
 
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryCreateAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryCreateAssessment`: interface{}
+	// response from `AssessmentLibraryCreateAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryCreateAssessment`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## AssessmentLibraryGetAssessment
 
-> interface{} AssessmentLibraryGetAssessment(ctx, libraryId, id).Execute()
+> string AssessmentLibraryGetAssessment(ctx, libraryId, id).Execute()
 
 Get assessment
 
@@ -113,7 +113,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryGetAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryGetAssessment`: interface{}
+	// response from `AssessmentLibraryGetAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryGetAssessment`: %v\n", resp)
 }
 ```
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## AssessmentLibraryUpdateAssessment
 
-> interface{} AssessmentLibraryUpdateAssessment(ctx, libraryId, id).Bundle(bundle).Assessment(assessment).Execute()
+> string AssessmentLibraryUpdateAssessment(ctx, libraryId, id).Bundle(bundle).Assessment(assessment).Execute()
 
 Update assessment
 
@@ -260,7 +260,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssessmentLibrariesAPIAPI.AssessmentLibraryUpdateAssessment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AssessmentLibraryUpdateAssessment`: interface{}
+	// response from `AssessmentLibraryUpdateAssessment`: string
 	fmt.Fprintf(os.Stdout, "Response from `AssessmentLibrariesAPIAPI.AssessmentLibraryUpdateAssessment`: %v\n", resp)
 }
 ```
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 

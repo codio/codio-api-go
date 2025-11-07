@@ -376,7 +376,7 @@ import (
 
 func main() {
 	courseId := "courseId_example" // string | Course id
-	body := interface{}(987) // interface{} |  (optional)
+	body := "body_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -406,7 +406,7 @@ Other parameters are passed through a pointer to a apiFilterLearnersForMentorsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **interface{}** |  | 
+ **body** | **string** |  | 
 
 ### Return type
 
@@ -719,7 +719,7 @@ import (
 
 func main() {
 	courseId := "courseId_example" // string | Course id
-	bookId := TODO // interface{} |  (optional)
+	bookId := "bookId_example" // string | Book id to process (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -749,7 +749,7 @@ Other parameters are passed through a pointer to a apiUpdateBooksRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **bookId** | [**interface{}**](interface{}.md) |  | 
+ **bookId** | **string** | Book id to process | 
 
 ### Return type
 

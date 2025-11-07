@@ -26,7 +26,7 @@ type ApiEventListRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIAPIService
 	nextToken *string
-	limit *interface{}
+	limit *string
 }
 
 // Continuation request token
@@ -36,7 +36,7 @@ func (r ApiEventListRequest) NextToken(nextToken string) ApiEventListRequest {
 }
 
 // Count of returned events
-func (r ApiEventListRequest) Limit(limit interface{}) ApiEventListRequest {
+func (r ApiEventListRequest) Limit(limit string) ApiEventListRequest {
 	r.limit = &limit
 	return r
 }

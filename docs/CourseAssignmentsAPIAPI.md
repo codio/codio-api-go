@@ -454,7 +454,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStudentTimeExtensions
 
-> interface{} UpdateStudentTimeExtensions(ctx, courseId, assignmentId, studentId).StudentTimeExtension(studentTimeExtension).Execute()
+> string UpdateStudentTimeExtensions(ctx, courseId, assignmentId, studentId).StudentTimeExtension(studentTimeExtension).Execute()
 
 Update Student Time Extensions
 
@@ -483,7 +483,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CourseAssignmentsAPIAPI.UpdateStudentTimeExtensions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateStudentTimeExtensions`: interface{}
+	// response from `UpdateStudentTimeExtensions`: string
 	fmt.Fprintf(os.Stdout, "Response from `CourseAssignmentsAPIAPI.UpdateStudentTimeExtensions`: %v\n", resp)
 }
 ```
@@ -512,7 +512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**string**
 
 ### Authorization
 

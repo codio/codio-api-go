@@ -17,7 +17,7 @@ import (
 // checks if the AssignmentProgress type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AssignmentProgress{}
 
-// AssignmentProgress Assignment progress
+// AssignmentProgress struct for AssignmentProgress
 type AssignmentProgress struct {
 	// Seconds spent in the assignment
 	SecondsSpent *int32 `json:"seconds_spent,omitempty"`

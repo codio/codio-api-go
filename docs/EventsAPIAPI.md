@@ -28,7 +28,7 @@ import (
 
 func main() {
 	nextToken := "nextToken_example" // string | Continuation request token (optional)
-	limit := TODO // interface{} | Count of returned events (optional)
+	limit := "limit_example" // string | Count of returned events (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiEventListRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **nextToken** | **string** | Continuation request token | 
- **limit** | [**interface{}**](interface{}.md) | Count of returned events | 
+ **limit** | **string** | Count of returned events | 
 
 ### Return type
 

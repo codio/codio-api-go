@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -8,10 +7,13 @@ api_course_api.go
 api_course_assignments_api.go
 api_course_books_api.go
 api_course_exports_api.go
+api_course_members_api.go
 api_events_api.go
 api_stack_api.go
 client.go
 configuration.go
+docs/AddTeacherToCourse.md
+docs/AddTeacherToCourseAnswer.md
 docs/ArchiveCourse.md
 docs/AssessmentLibrariesAPIAPI.md
 docs/Assignment.md
@@ -24,6 +26,7 @@ docs/CourseAPIAPI.md
 docs/CourseAssignmentsAPIAPI.md
 docs/CourseBooksAPIAPI.md
 docs/CourseExportsAPIAPI.md
+docs/CourseMembersAPIAPI.md
 docs/CreateAssignment.md
 docs/CreateAssignmentAnswer.md
 docs/CreateAssignmentSettings.md
@@ -32,7 +35,6 @@ docs/CreateCourseAnswer.md
 docs/CreateCourseModule.md
 docs/CreateCourseModuleAnswer.md
 docs/DownloadStatus.md
-docs/Event.md
 docs/EventsAPIAPI.md
 docs/EventsList.md
 docs/ExamMode.md
@@ -58,6 +60,8 @@ docs/User.md
 git_push.sh
 go.mod
 go.sum
+model_add_teacher_to_course.go
+model_add_teacher_to_course_answer.go
 model_archive_course.go
 model_assignment.go
 model_assignment_progress.go
@@ -73,7 +77,6 @@ model_create_course_answer.go
 model_create_course_module.go
 model_create_course_module_answer.go
 model_download_status.go
-model_event.go
 model_events_list.go
 model_exam_mode.go
 model_filter_learners_for_mentors_answer_example.go
@@ -95,11 +98,5 @@ model_task_status.go
 model_timed_exam_mode.go
 model_user.go
 response.go
-test/api_assessment_libraries_api_test.go
-test/api_course_api_test.go
-test/api_course_assignments_api_test.go
-test/api_course_books_api_test.go
-test/api_course_exports_api_test.go
-test/api_events_api_test.go
-test/api_stack_api_test.go
+test/api_course_members_api_test.go
 utils.go

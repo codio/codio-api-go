@@ -736,7 +736,7 @@ func (r ApiUpdateStudentTimeExtensionsRequest) StudentTimeExtension(studentTimeE
 	return r
 }
 
-func (r ApiUpdateStudentTimeExtensionsRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiUpdateStudentTimeExtensionsRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.UpdateStudentTimeExtensionsExecute(r)
 }
 
@@ -760,13 +760,13 @@ func (a *CourseAssignmentsAPIAPIService) UpdateStudentTimeExtensions(ctx context
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *CourseAssignmentsAPIAPIService) UpdateStudentTimeExtensionsExecute(r ApiUpdateStudentTimeExtensionsRequest) (interface{}, *http.Response, error) {
+//  @return string
+func (a *CourseAssignmentsAPIAPIService) UpdateStudentTimeExtensionsExecute(r ApiUpdateStudentTimeExtensionsRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CourseAssignmentsAPIAPIService.UpdateStudentTimeExtensions")
