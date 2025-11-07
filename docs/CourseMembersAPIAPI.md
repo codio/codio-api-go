@@ -23,7 +23,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -48,7 +48,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiAddTeacherRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **addTeacherToCourse** | [**AddTeacherToCourse**](AddTeacherToCourse.md) |  | 
+ **addTeacherToCourse** | [**AddTeacherToCourse**](AddTeacherToCourse.md) |  |
 
 ### Return type
 
@@ -76,4 +76,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

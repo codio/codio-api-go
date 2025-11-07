@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -54,8 +54,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
 
 ### Other Parameters
 
@@ -100,7 +100,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -129,8 +129,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
 
 ### Other Parameters
 
@@ -141,10 +141,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **file** | ***os.File** | File archive data to be published | 
- **changelog** | **string** | Publish changelog | 
- **stackVersionId** | **string** | Stack version identification | 
- **withStackUpdate** | **bool** | Propagate stack update | 
+ **file** | ***os.File** | File archive data to be published |
+ **changelog** | **string** | Publish changelog |
+ **stackVersionId** | **string** | Stack version identification |
+ **withStackUpdate** | **bool** | Propagate stack update |
 
 ### Return type
 
@@ -179,7 +179,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -205,9 +205,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
-**taskId** | **string** | Task id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
+**taskId** | **string** | Task id |
 
 ### Other Parameters
 
@@ -253,7 +253,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -278,7 +278,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -288,7 +288,7 @@ Other parameters are passed through a pointer to a apiCreateProjectBasedAssignme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createAssignment** | [**CreateAssignment**](CreateAssignment.md) |  | 
+ **createAssignment** | [**CreateAssignment**](CreateAssignment.md) |  |
 
 ### Return type
 
@@ -323,7 +323,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -348,8 +348,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
 
 ### Other Parameters
 
@@ -394,7 +394,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -420,8 +420,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
 
 ### Other Parameters
 
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **assignmentSettings** | [**AssignmentSettings**](AssignmentSettings.md) |  | 
+ **assignmentSettings** | [**AssignmentSettings**](AssignmentSettings.md) |  |
 
 ### Return type
 
@@ -467,7 +467,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -494,9 +494,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
-**studentId** | **string** | Student id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
+**studentId** | **string** | Student id |
 
 ### Other Parameters
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 
 
 
- **studentTimeExtension** | [**StudentTimeExtension**](StudentTimeExtension.md) |  | 
+ **studentTimeExtension** | [**StudentTimeExtension**](StudentTimeExtension.md) |  |
 
 ### Return type
 
@@ -526,4 +526,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

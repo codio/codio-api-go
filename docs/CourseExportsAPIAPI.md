@@ -38,7 +38,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -62,7 +62,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -106,7 +106,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -131,8 +131,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
 
 ### Other Parameters
 
@@ -177,7 +177,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -201,7 +201,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -245,7 +245,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -270,8 +270,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -341,8 +341,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -387,7 +387,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -411,7 +411,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -455,7 +455,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -479,7 +479,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -523,7 +523,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -547,7 +547,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -591,7 +591,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -616,8 +616,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -662,7 +662,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -686,7 +686,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -730,7 +730,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -754,7 +754,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -798,7 +798,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -823,8 +823,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -869,7 +869,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -894,8 +894,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**studentId** | **string** | Student id | 
+**courseId** | **string** | Course id |
+**studentId** | **string** | Student id |
 
 ### Other Parameters
 
@@ -940,7 +940,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -965,8 +965,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -1011,7 +1011,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -1038,10 +1038,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
-**studentId** | **string** | Student id | 
-**taskId** | **string** | Export task id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
+**studentId** | **string** | Student id |
+**taskId** | **string** | Export task id |
 
 ### Other Parameters
 
@@ -1088,7 +1088,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -1114,9 +1114,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**assignmentId** | **string** | Assignment id | 
-**studentId** | **string** | Student id | 
+**courseId** | **string** | Course id |
+**assignmentId** | **string** | Assignment id |
+**studentId** | **string** | Student id |
 
 ### Other Parameters
 
@@ -1145,4 +1145,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

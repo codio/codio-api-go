@@ -23,7 +23,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -53,8 +53,8 @@ Other parameters are passed through a pointer to a apiEventListRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** | Continuation request token | 
- **limit** | **string** | Count of returned events | 
+ **nextToken** | **string** | Continuation request token |
+ **limit** | **string** | Count of returned events |
 
 ### Return type
 
@@ -72,4 +72,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

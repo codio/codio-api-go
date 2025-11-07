@@ -11,10 +11,10 @@ package codioapi
 
 import (
 	"context"
+	openapiclient "github.com/codio/codio-api-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_codioapi_CourseAPIAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService ArchiveCourse", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -38,7 +38,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService CourseStructure", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -52,7 +52,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService CoursesList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CourseAPIAPI.CoursesList(context.Background()).Execute()
 
@@ -64,7 +64,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService CreateCourse", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CourseAPIAPI.CreateCourse(context.Background()).Execute()
 
@@ -76,7 +76,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService CreateCourseModule", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -90,7 +90,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService FilterLearnersForMentors", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -104,7 +104,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService FindCourse", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CourseAPIAPI.FindCourse(context.Background()).Execute()
 
@@ -116,7 +116,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService ListCourseStudents", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -130,7 +130,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService ListCourseTeachers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -144,7 +144,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService StudentCourseProgress", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var studentId string
@@ -159,7 +159,7 @@ func Test_codioapi_CourseAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseAPIAPIService UpdateBooks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 

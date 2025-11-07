@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -53,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
+**libraryId** | **string** | Library id |
 
 ### Other Parameters
 
@@ -63,8 +63,8 @@ Other parameters are passed through a pointer to a apiAssessmentLibraryCreateAss
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **bundle** | ***os.File** | Optional file archive data to be published | 
- **assessment** | **map[string]interface{}** |  | 
+ **bundle** | ***os.File** | Optional file archive data to be published |
+ **assessment** | **map[string]interface{}** |  |
 
 ### Return type
 
@@ -99,7 +99,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
-**id** | **string** | Assessment id | 
+**libraryId** | **string** | Library id |
+**id** | **string** | Assessment id |
 
 ### Other Parameters
 
@@ -170,7 +170,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -197,7 +197,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
+**libraryId** | **string** | Library id |
 
 ### Other Parameters
 
@@ -207,9 +207,9 @@ Other parameters are passed through a pointer to a apiAssessmentLibrarySearchReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **count** | **string** | Optional count parameter | 
- **offset** | **string** | Optional offset parameter | 
- **free** | [**SocrateTagSearchExample**](SocrateTagSearchExample.md) | Free form tag search is allowed | 
+ **count** | **string** | Optional count parameter |
+ **offset** | **string** | Optional offset parameter |
+ **free** | [**SocrateTagSearchExample**](SocrateTagSearchExample.md) | Free form tag search is allowed |
 
 ### Return type
 
@@ -244,7 +244,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -271,8 +271,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryId** | **string** | Library id | 
-**id** | **string** | Assessment id | 
+**libraryId** | **string** | Library id |
+**id** | **string** | Assessment id |
 
 ### Other Parameters
 
@@ -283,8 +283,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **bundle** | ***os.File** | Optional file archive data to be published | 
- **assessment** | **map[string]interface{}** |  | 
+ **bundle** | ***os.File** | Optional file archive data to be published |
+ **assessment** | **map[string]interface{}** |  |
 
 ### Return type
 
@@ -319,7 +319,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -361,4 +361,3 @@ Other parameters are passed through a pointer to a apiListLibrariesRequest struc
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

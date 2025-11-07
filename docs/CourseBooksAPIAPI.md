@@ -24,7 +24,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bookId** | **string** | Book id | 
+**bookId** | **string** | Book id |
 
 ### Other Parameters
 
@@ -62,10 +62,10 @@ Other parameters are passed through a pointer to a apiBookVersionPublishRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **file** | ***os.File** | File archive data to be published | 
- **changelog** | **string** | Publish changelog | 
- **stackVersionId** | **string** | Stack version identification | 
- **withStackUpdate** | **bool** | Propagate stack update | 
+ **file** | ***os.File** | File archive data to be published |
+ **changelog** | **string** | Publish changelog |
+ **stackVersionId** | **string** | Stack version identification |
+ **withStackUpdate** | **bool** | Propagate stack update |
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -125,8 +125,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bookId** | **string** | Book id | 
-**taskId** | **string** | Task id | 
+**bookId** | **string** | Book id |
+**taskId** | **string** | Task id |
 
 ### Other Parameters
 
@@ -154,4 +154,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

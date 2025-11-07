@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```go
-import codioapi "github.com/GIT_USER_ID/GIT_REPO_ID"
+import codioapi "github.com/codio/codio-api-go"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -200,6 +200,3 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrTime`
 
 ## Author
-
-
-

@@ -11,10 +11,10 @@ package codioapi
 
 import (
 	"context"
+	openapiclient "github.com/codio/codio-api-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportAssessmentData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -38,7 +38,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportAssignmentCSV", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -53,7 +53,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCoachData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -67,7 +67,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCoachDataByTask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var taskId string
@@ -82,7 +82,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseSourceDataItemByTask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var taskId string
@@ -97,7 +97,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseSourceDataItems", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -111,7 +111,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseSourcesData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -125,7 +125,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseWorkData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -139,7 +139,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseWorkDataItemByTask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var taskId string
@@ -154,7 +154,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportCourseWorkDataItems", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -168,7 +168,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportLLMProxyData", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 
@@ -182,7 +182,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportLLMProxyDataByTaskRoute", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var taskId string
@@ -197,7 +197,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService ExportStudentCSV", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var studentId string
@@ -212,7 +212,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService FetchDownloadStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var taskId string
@@ -227,7 +227,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService FetchDownloadStatusStudent", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string
@@ -244,7 +244,7 @@ func Test_codioapi_CourseExportsAPIAPIService(t *testing.T) {
 
 	t.Run("Test CourseExportsAPIAPIService StartedAssignmentDownload", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var courseId string
 		var assignmentId string

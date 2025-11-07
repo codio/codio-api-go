@@ -33,7 +33,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id to archive | 
+**courseId** | **string** | Course id to archive |
 
 ### Other Parameters
 
@@ -101,7 +101,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -126,7 +126,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -136,7 +136,7 @@ Other parameters are passed through a pointer to a apiCourseStructureRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **withHiddenAssignments** | **string** | Fetch hidden assignments | 
+ **withHiddenAssignments** | **string** | Fetch hidden assignments |
 
 ### Return type
 
@@ -171,7 +171,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -201,8 +201,8 @@ Other parameters are passed through a pointer to a apiCoursesListRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **nextToken** | **string** | Next search data portion token, if specified - other parameters will be ignored | 
- **archived** | **string** | Archived courses filter | 
+ **nextToken** | **string** | Next search data portion token, if specified - other parameters will be ignored |
+ **archived** | **string** | Archived courses filter |
 
 ### Return type
 
@@ -237,7 +237,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -266,7 +266,7 @@ Other parameters are passed through a pointer to a apiCreateCourseRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createCourse** | [**CreateCourse**](CreateCourse.md) |  | 
+ **createCourse** | [**CreateCourse**](CreateCourse.md) |  |
 
 ### Return type
 
@@ -301,7 +301,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -326,7 +326,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -336,7 +336,7 @@ Other parameters are passed through a pointer to a apiCreateCourseModuleRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createCourseModule** | [**CreateCourseModule**](CreateCourseModule.md) |  | 
+ **createCourseModule** | [**CreateCourseModule**](CreateCourseModule.md) |  |
 
 ### Return type
 
@@ -371,7 +371,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -396,7 +396,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -406,7 +406,7 @@ Other parameters are passed through a pointer to a apiFilterLearnersForMentorsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **string** |  | 
+ **body** | **string** |  |
 
 ### Return type
 
@@ -441,7 +441,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -471,8 +471,8 @@ Other parameters are passed through a pointer to a apiFindCourseRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Course name | 
- **withHiddenAssignments** | **string** | Fetch hidden assignments | 
+ **name** | **string** | Course name |
+ **withHiddenAssignments** | **string** | Fetch hidden assignments |
 
 ### Return type
 
@@ -507,7 +507,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -531,7 +531,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -575,7 +575,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -599,7 +599,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -643,7 +643,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -668,8 +668,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
-**studentId** | **string** | Student id | 
+**courseId** | **string** | Course id |
+**studentId** | **string** | Student id |
 
 ### Other Parameters
 
@@ -714,7 +714,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/codio/codio-api-go"
 )
 
 func main() {
@@ -739,7 +739,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**courseId** | **string** | Course id | 
+**courseId** | **string** | Course id |
 
 ### Other Parameters
 
@@ -749,7 +749,7 @@ Other parameters are passed through a pointer to a apiUpdateBooksRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **bookId** | **string** | Book id to process | 
+ **bookId** | **string** | Book id to process |
 
 ### Return type
 
@@ -767,4 +767,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
